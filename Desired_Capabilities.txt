@@ -1,0 +1,23 @@
+public static  String base_url = "http://localhost:8084";     
+Proxy proxy = new Proxy();     
+proxy.setProxyAutoconfigUrl(base_url);
+DesiredCapabilities capabilities = DesiredCapabilities.internetExplorer();
+capabilities.setCapability(CapabilityType.PROXY, proxy);
+RemoteWebDriver driver = new RemoteWebDriver(capabilities);
+selenium = new WebDriverBackedSelenium(driver, base_url);
+
+
+Sample grid 2 code which works for firefox but doesn't work on IE9
+
+
+String hubURL = "http://myip:4444/wd/hub";
+DesiredCapabilities capability = DesiredCapabilities.internetExplorer();
+//capability.setBrowserName("internet explorer");
+//capability.setPlatform("WINDOWS");
+//capability.setVersion("9.0.4");
+WebDriver driver = new RemoteWebDriver(new URL(hubURL), capability);
+driver.get("http://www.google.com");
+WebElement element = driver.findElement(By.name("q"));
+element.sendKeys("Cheese!");
+element.submit();
+driver.quit(); 
